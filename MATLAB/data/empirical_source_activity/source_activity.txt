@@ -1,0 +1,2 @@
+The full dataset including EEG source activity can be obtained from
+https://osf.io/mndt8/
