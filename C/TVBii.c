@@ -73,7 +73,7 @@ int importGlobalConnectivity(char *SC_cap_filename, char *SC_dist_filename, char
     file_inputreg=fopen(SC_inputreg_filename, "r");
     if (file_cap==NULL || file_dist==NULL || file_inputreg==NULL)
     {
-        printf( "\n ERROR: Could not open SC files. Terminating... \n\n");
+        printf( "\n ERROR: Could not open SC files. Terminating... \n\n%s\n%s\n%s\n\n", SC_cap_filename, SC_dist_filename, SC_inputreg_filename);
         exit(0);
     }
     
@@ -469,12 +469,12 @@ int main(int argc, char *argv[])
     
     // Construct filenames
     char cap_file[100];memset(cap_file, 0, 100*sizeof(char));
-    strcpy(cap_file,"input/");strcat(cap_file,argv[2]);strcat(cap_file,"_SCcap_large.txt");
+    strcpy(cap_file,"input/");strcat(cap_file,argv[2]);strcat(cap_file,"_SC_strengths.txt");
     char dist_file[100];memset(dist_file, 0, 100*sizeof(char));
-    strcpy(dist_file,"input/");strcat(dist_file,argv[2]);strcat(dist_file,"_SCdist_large.txt");
+    strcpy(dist_file,"input/");strcat(dist_file,argv[2]);strcat(dist_file,"_SC_distances.txt");
     char reg_file[100];memset(reg_file, 0, 100*sizeof(char));
-    strcpy(reg_file,"input/");strcat(reg_file,argv[2]);strcat(reg_file,"_SCinputreg_large.txt");
-    
+    strcpy(reg_file,"input/");strcat(reg_file,argv[2]);strcat(reg_file,"_SC_regionids.txt");
+
     // Actual function to read and generate SC
     int         maxdelay = importGlobalConnectivity(cap_file, dist_file, reg_file, regions, &region_activity, &reg_globinp_p, global_trans_v, &n_conn_table, &n_conn_table_G_NMDA, G_J_NMDA, &SC_cap, &SC_rowsums);
     int         reg_act_size = regions * maxdelay; // size of region_activity ringbuffer
@@ -538,7 +538,6 @@ int main(int argc, char *argv[])
     int is_improved = 0, is_fine_tuning=-1;
     int ts, int_i, i_node_vec, FIC_iter, ext_inp_counter=0;
     
-    
     /*
      FIC tuning loop
      */
@@ -552,7 +551,7 @@ int main(int argc, char *argv[])
             global_input[j]     = 0.001;
             meanFR[j]           = 0.0;
         }
-        
+
         /*
          Phase I: Generate burn-in activity
          */
@@ -569,7 +568,7 @@ int main(int argc, char *argv[])
                     }
                     global_input[j] = tmpglobinput;
                 }
-                
+
                 /*
                  Integrate model
                  */
@@ -606,7 +605,6 @@ int main(int argc, char *argv[])
             }
             ext_inp_counter += nodes_vec;
         }
-        
         
         /*
          Phase II: Simulate full time series and compute mean firing rate for each node
