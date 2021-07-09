@@ -16,7 +16,7 @@ gcc  -Wall -std=c99 -msse2 -O3 -ftree-vectorize -ffast-math -funroll-loops -fomi
 
 ./tvb <parameter_file> <subject_id> <input_case>
 
-<parameter_file>: filename of a simple text file (stored in the same folder as <program>) that contains a sequence of three floating point numbers that specify (in this order)
+<parameter_file>: filename of a simple text file (stored in the same folder as <program>) that contains a sequence of three floating point numbers that specify (in this order). Note that all three floating point values must be written into the first line, each one separated by one whitespace.
 * long-range coupling strength parameter G
 * inhibitory population input scaling parameter w_BG^I
 * and the ratio of inhibitory to excitatory input strengths w_BG^I / w_BG^E  (“optimal” ratios w_BG^I / w_BG^E found during parameter space exploration were >1)
