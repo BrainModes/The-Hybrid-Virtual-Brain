@@ -1,4 +1,8 @@
 # The-Hybrid-Virtual-Brain
+
+# Update: Please use updated version TVBii_update.c to address numerical instability leading to accumulation of machine precision errors on some machines. In the updated version simple checks were added that re-set the state of synaptic gating back to its plausible range between 0 and 1 if it leaves this range.
+
+
 Quick instructions
 
 1. Compile the C code with a compiler with support for SSE instructions enabled. I found the following combination of flags yields good performance (in terms of simulation speed) with the GNU C compiler
@@ -29,6 +33,7 @@ gcc  -Wall -std=c99 -msse2 -O3 -ftree-vectorize -ffast-math -funroll-loops -fomi
 
 
 5. Outputs are stored in the folder 'output'. Files with prefix 'BOLD_' contain simulated fMRI time series (time x nodes)- Files with prefix 'SV_' contain state variables (time x n * state_variable). Please refer to lines 885 to 923 of the C code for the sorting of state variables. If you perform a large number of simulations, consider commenting out these lines, as the produced state variable files will be very large (several GB per file depending on simulated time).
+  
 
 
 Questions? michael.schirner@charite.de or petra.ritter@charite.de
