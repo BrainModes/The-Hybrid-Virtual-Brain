@@ -481,11 +481,11 @@ int main(int argc, char *argv[])
     
     // Construct filenames
     char cap_file[100];memset(cap_file, 0, 100*sizeof(char));
-    strcpy(cap_file,"input/");strcat(cap_file,argv[2]);strcat(cap_file,"_SCcap_large.txt");
+    strcpy(cap_file,"input/");strcat(cap_file,argv[2]);strcat(cap_file,"_SC_strengths.txt");
     char dist_file[100];memset(dist_file, 0, 100*sizeof(char));
-    strcpy(dist_file,"input/");strcat(dist_file,argv[2]);strcat(dist_file,"_SCdist_large.txt");
+    strcpy(dist_file,"input/");strcat(dist_file,argv[2]);strcat(dist_file,"_SC_distances.txt");
     char reg_file[100];memset(reg_file, 0, 100*sizeof(char));
-    strcpy(reg_file,"input/");strcat(reg_file,argv[2]);strcat(reg_file,"_SCinputreg_large.txt");
+    strcpy(reg_file,"input/");strcat(reg_file,argv[2]);strcat(reg_file,"_SC_regionids.txt");
     
     // Actual function to read and generate SC
     int         maxdelay = importGlobalConnectivity(cap_file, dist_file, reg_file, regions, &region_activity, &reg_globinp_p, global_trans_v, &n_conn_table, &n_conn_table_G_NMDA, G_J_NMDA, &SC_cap, &SC_rowsums);
